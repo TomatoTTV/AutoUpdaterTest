@@ -48,3 +48,7 @@ ipcMain.on('app_version', (event) => {
 autoUpdater.on('update-available', () => {
     mainWindow.webContents.send('update_downloaded');
 });
+
+autoUpdater.on('upadte-downloaded',() => {
+    mainWindow.webContents.send('update_downloaded');
+});
