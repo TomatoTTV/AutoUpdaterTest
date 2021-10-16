@@ -18,7 +18,7 @@ function createWindow() {
     });
     mainWindow.once('ready-to-show', () => {
         autoUpdater.checkForUpdatesAndNotify();
-    });
+      });
 };
 
 app.on('ready', () => {
@@ -37,18 +37,18 @@ app.on('activate', function () {
     }
 });
 
-ipcMain.on('restar_app'), () => {
+ipcMain.on('restart_app', () => {
     autoUpdater.quitAndInstall();
-};
+});
 
 ipcMain.on('app_version', (event) => {
     event.sender.send('app_version', {version: app.getVersion() });
 });
  
 autoUpdater.on('update-available', () => {
-    mainWindow.webContents.send('update_downloaded');
-});
+    mainWindow.webContents.send('update_available');
+  });
 
-autoUpdater.on('upadte-downloaded',() => {
+  autoUpdater.on('update-downloaded', () => {
     mainWindow.webContents.send('update_downloaded');
-});
+  });
